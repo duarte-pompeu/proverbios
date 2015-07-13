@@ -18,9 +18,18 @@
 			
 				
 		<div id="generated_proverb" class="project-tagline"> </div>
-		<form name="myform" action="javascript:pretty_print(get_proverb())">
-			<a class="btn" href="javascript:pretty_print(get_proverb())">Gerar novo provérbio</a>
+		<form name="myform">
+			<a class="btn" href="javascript:print_proverb(get_proverb())">Gerar novo provérbio</a>
 		</form>
+		
+		<br>
+		<br>
+	
+		<div id="src_proverbs" class="project-tagline">
+			<form>
+				<a style="color:white" href="javascript:print_src_proverbs()">Ver provérbios originais</a>
+			</form>
+		</div>
 	</section>
 </body>
 
@@ -28,6 +37,6 @@
 <script type="text/javascript" src="js/proverbs.js"></script>
 <script type="text/javascript" src="js/io.js"></script>
 <script>
-pretty_print(get_proverb());
+print_proverb(get_proverb());
 </script>
 </html>

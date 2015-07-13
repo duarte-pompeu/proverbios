@@ -26,6 +26,11 @@ var ALL_PROVERBS = [];
 ALL_PROVERBS.push(PROVERBS_1);
 ALL_PROVERBS.push(PROVERBS_2);
 
+var LAST_PROVERBS = [];
+
+LAST_PROVERBS.push("");
+LAST_PROVERBS.push("");
+
 function get_proverb(){
 	// 1. Pick variable
 	
@@ -36,10 +41,25 @@ function get_proverb(){
 	var rand1 = randint(n_proverbs);
 	var rand2 = randint(n_proverbs);
 	
-	var proverb1 = proverbs[rand1].split(",")[0];
-	var proverb2 = proverbs[rand2].split(",")[1];
+	var proverb1 = proverbs[rand1];
+	var proverb2 = proverbs[rand2];
 	
-	return proverb1 + "," + proverb2;
+	update_last_proverbs(proverb1, proverb2);
+	
+	var new_prov_pt1 = proverb1.split(",")[0];
+	var new_prov_pt2 = proverb2.split(",")[1];
+	
+	return new_prov_pt1 + "," + new_prov_pt2;
+}
+
+function update_last_proverbs(p1, p2){
+	LAST_PROVERBS = [];
+	LAST_PROVERBS.push(p1);
+	LAST_PROVERBS.push(p2);
+}
+
+function get_last_proverbs(){
+	return LAST_PROVERBS;
 }
 
 function randint(max){

@@ -1,10 +1,27 @@
-var ELEMENT_ID = 'generated_proverb';
+var PROV_ELEMENT_ID = 'generated_proverb';
+var SRC_ELEMENT_ID = "src_proverbs";
 
-function pretty_print(string)
+function print_proverb(string)
 {
-	var div = document.getElementById(ELEMENT_ID);
+	var div = document.getElementById(PROV_ELEMENT_ID);
 	var result = "";
 	result += "<p>" + string + "</p>";
+	
+	div.innerHTML = result;
+}
+
+function print_src_proverbs()
+{
+	out = "";
+	var prov_array = LAST_PROVERBS;
+	
+	for(var i = 0; i < prov_array.length; i++){
+		out += prov_array[i];
+		out += "<br>"
+	}
+	
+	var div = document.getElementById(SRC_ELEMENT_ID);
+	var result = "<p>" + out + "</p>";
 	
 	div.innerHTML = result;
 }
