@@ -1,6 +1,10 @@
 var PROV_ELEMENT_ID = 'generated_proverb';
 var SRC_ELEMENT_ID = "src_proverbs";
 
+var SRC_BUTTON ="<form>";
+SRC_BUTTON += '<a style="color:#FFFFFF !important" href="javascript:print_src_proverbs()">Ver provérbios originais</a>';
+SRC_BUTTON += "</form";
+
 function print_proverb(string)
 {
 	var div = document.getElementById(PROV_ELEMENT_ID);
@@ -26,8 +30,8 @@ function print_src_proverbs()
 	div.innerHTML = result;
 }
 
-
-function capitalize(string) {
-	// taken from http://stackoverflow.com/a/1026087
-	return string[0].toUpperCase() + string.slice(1);
+function reset_src(){
+	var div = document.getElementById(SRC_ELEMENT_ID);
+	div.innerHTML = SRC_BUTTON;
+	
 }
