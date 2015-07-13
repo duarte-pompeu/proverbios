@@ -5,17 +5,29 @@
 
 	<title>Gerador de provérbios online</title>
 	<meta charset="utf-8" />
-	<script type="text/javascript" src="js/proverbs.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="http://duarte-pompeu.github.io/stylesheets/normalize.css" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="http://duarte-pompeu.github.io/stylesheets/stylesheet.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="http://duarte-pompeu.github.io/stylesheets/github-light.css" media="screen">
 </head>
-<script>
-while(true){
-	alert (get_proverb());
-}
-
-</script>
 <body>
-
-
-
+	<section class="page-header">
+		<h1 class="project-name">Gerador de Provérbios</h1>
+		<br/>
+			
+				
+		<div id="generated_proverb" class="project-tagline"> </div>
+		<form name="myform" action="javascript:pretty_print(get_proverb())">
+			<a class="btn" href="javascript:pretty_print(get_proverb())">Gerar novo provérbio</a>
+		</form>
+	</section>
 </body>
+
+
+<script type="text/javascript" src="js/proverbs.js"></script>
+<script type="text/javascript" src="js/io.js"></script>
+<script>
+pretty_print(get_proverb());
+</script>
 </html>

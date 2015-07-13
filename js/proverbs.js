@@ -8,12 +8,12 @@
  * Example:
  * [Proverb_1_part1], [proverb_1_part_2].
  * [Proverb_2_part1], [proverb_2_part_2].
- *                 ...
+ *					...
  * 
  * How to import from src text to javascript very simply (but not dynamic at all - who cares anyway).
  * $ cat proverbios1.txt | tr '\n' '|' >> proverbs.js
  * $ cat proverbios2.txt | tr '\n' '|' >> proverbs.js
- *        ...
+ *				...
  * then just do: var PROVERB_N = "[huge line with proverbs]";
  * you might have to remove extra '|' at the end of the string
  */

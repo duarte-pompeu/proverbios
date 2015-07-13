@@ -1,10 +1,12 @@
-var ELEMENT_ID = 'proverb';
+var ELEMENT_ID = 'generated_proverb';
 
 function pretty_print(string)
 {
-
-	//~ var div = document.getElementById(ELEMENT_ID);
-	//~ div.innerHTML = "<p>" + proverb + "</p>";
+	var div = document.getElementById(ELEMENT_ID);
+	var result = "";
+	result += "<p>" + string + "</p>";
+	
+	div.innerHTML = result;
 }
 
 
