@@ -27,6 +27,7 @@ function print_src_proverbs()
 	var div = document.getElementById(SRC_ELEMENT_ID);
 	var result = "<p>" + out + "</p>";
 	
+	console.log(result);
 	div.innerHTML = result;
 }
 

@@ -55,10 +55,21 @@ function get_proverb(){
 	var proverb1 = proverbs[rand1];
 	var proverb2 = proverbs[rand2];
 	
+	update_last_proverbs(proverb1, proverb2);
+	
 	var new_prov_pt1 = proverb1.split(",")[0];
 	var new_prov_pt2 = proverb2.split(",")[1];
 	
 	return new_prov_pt1 + "," + new_prov_pt2;
+}
+
+function update_last_proverbs(p1, p2){
+	LAST_PROVERBS = [];
+	LAST_PROVERBS.push(p1);
+	LAST_PROVERBS.push(p2);
+}
+
+function get_last_proverbs(){
 }
 
 function randint(max){
