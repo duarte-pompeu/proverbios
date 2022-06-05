@@ -45,7 +45,12 @@ function get_proverb(){
 	
 	n_proverbs = proverbs.length;
 	var rand1 = randint(n_proverbs);
-	var rand2 = randint(n_proverbs);
+	var rand2 = -1;
+
+	// get the second half of another proverb, and avoid using the same
+	while(rand2 == -1 || rand2 == rand1){
+		rand2 = randint(n_proverbs);
+	}
 	
 	var proverb1 = proverbs[rand1];
 	var proverb2 = proverbs[rand2];
