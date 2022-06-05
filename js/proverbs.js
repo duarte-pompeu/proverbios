@@ -69,9 +69,6 @@ function update_last_proverbs(p1, p2){
 	LAST_PROVERBS.push(p2);
 }
 
-function get_last_proverbs(){
-}
-
 function randint(max){
 	return Math.floor(Math.random() * (max + 1));
 }
