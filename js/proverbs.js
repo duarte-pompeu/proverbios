@@ -124,14 +124,11 @@ function generate_proverb_from_ref(ref) {
 	if (!ref) return null;
 	
 	const parts = ref.split('-');
-	if (parts.length !== 2) return null;
+	if (parts.length !== 3) return null;
 	
 	const i = parseInt(parts[0]);
-	const range = parts[1].split('-');
-	if (range.length !== 2) return null;
-	
-	const j = parseInt(range[0]);
-	const k = parseInt(range[1]);
+	const j = parseInt(parts[1]);
+	const k = parseInt(parts[2]);
 	
 	if (isNaN(i) || isNaN(j) || isNaN(k)) return null;
 	if (i < 0 || i >= ALL_PROVERBS.length) return null;
@@ -148,7 +145,7 @@ function generate_proverb_from_ref(ref) {
 function initialize_from_url() {
 	const ref = get_ref_from_url();
 	if (ref) {
-		const result = generate_proverb_from_ref(ref);
+		let result = generate_proverb_from_ref(ref);
 		if (result) {
 			show_proverb(result.proverb);
 			show_ref(result.ref);
