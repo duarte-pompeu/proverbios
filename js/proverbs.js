@@ -27,13 +27,14 @@ var LAST_PROVERBS = [];
 LAST_PROVERBS.push("");
 LAST_PROVERBS.push("");
 
-var PROV_ELEMENT_ID = 'generated_proverb';
-var SRC_ELEMENT_ID = "src_proverbs";
+var PROVERB_ELEMENT_ID = 'generated_proverb';
+var SOURCSE_ELEMENT_ID = "src_proverbs";
 
 var SRC_BUTTON = "<form>";
 SRC_BUTTON += '<a style="color:#FFFFFF !important" href="javascript:button_print_original_proverbs()">Ver provérbios originais</a>';
 SRC_BUTTON += "</form";
 
+// called by buttons
 function button_generate_new_proverb() {
 	var proverb = get_proverb();
 	print_proverb(proverb);
@@ -50,12 +51,14 @@ function button_print_original_proverbs() {
 		out += "<br>"
 	}
 
-	var div = document.getElementById(SRC_ELEMENT_ID);
+	var div = document.getElementById(SOURCSE_ELEMENT_ID);
 	var result = "<p>" + out + "</p>";
 
 	console.log(result);
 	div.innerHTML = result;
 }
+
+
 
 
 function get_proverb() {
@@ -97,7 +100,7 @@ function randint(max) {
 
 
 function print_proverb(string) {
-	var div = document.getElementById(PROV_ELEMENT_ID);
+	var div = document.getElementById(PROVERB_ELEMENT_ID);
 	var result = "";
 	result += "<p>" + string + "</p>";
 
@@ -106,6 +109,6 @@ function print_proverb(string) {
 
 
 function reset_src() {
-	var div = document.getElementById(SRC_ELEMENT_ID);
+	var div = document.getElementById(SOURCSE_ELEMENT_ID);
 	div.innerHTML = SRC_BUTTON;
 }
