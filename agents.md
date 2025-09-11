@@ -1,0 +1,1 @@
+I created this website many years ago a joke - it mixes 2 proverbs randomly, combiniting them into a silly proverb. It uses vanilla html + css + js, with some styling from old github.pages.
