@@ -26,10 +26,6 @@ let LAST_PROVERBS = ["", ""];
 const PROVERB_ELEMENT_ID = 'generated_proverb';
 const SOURCES_ELEMENT_ID = "src_proverbs";
 
-const SRC_BUTTON = "<form>";
-SRC_BUTTON += '<a style="color:#FFFFFF !important" href="javascript:button_print_original_proverbs()">Ver provérbios originais</a>';
-SRC_BUTTON += "</form";
-
 // called by buttons
 function button_generate_new_proverb() {
 	let proverb = mix_random_proverbs();
@@ -45,25 +41,17 @@ function button_print_original_proverbs() {
 // renders
 function show_proverb(string) {
 	let div = document.getElementById(PROVERB_ELEMENT_ID);
-	let result = "";
-	result += "<p>" + string + "</p>";
+	let result = `<p>${string}</p>`;
 	div.innerHTML = result;
 }
 
 function hide_sources() {
 	let div = document.getElementById(SOURCES_ELEMENT_ID);
-	div.innerHTML = SRC_BUTTON;
+	div.innerHTML = "<br><br><br>";
 }
 
 function show_sources(proverbs) {
-	let html = "<p>";
-
-	for (let i = 0; i < proverbs.length; i++) {
-		html += proverbs[i];
-		html += "<br>"
-	}
-	html += "</p>";
-
+	let html = `<p>${proverbs.join("<br>")}</p>`;
 	let div = document.getElementById(SOURCES_ELEMENT_ID);
 	div.innerHTML = html;
 }
@@ -86,9 +74,9 @@ function mix_random_proverbs() {
 
 	update_last_proverbs(proverb1, proverb2);
 
-	let new_prov_pt1 = proverb1.split(",")[0];
-	let new_prov_pt2 = proverb2.split(",")[1];
-	return new_prov_pt1 + "," + new_prov_pt2;
+	const new_prov_pt1 = proverb1.split(",")[0];
+	const new_prov_pt2 = proverb2.split(",")[1];
+	return `${new_prov_pt1}, ${new_prov_pt2}`;
 }
 
 function update_last_proverbs(p1, p2) {
