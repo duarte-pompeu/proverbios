@@ -29,10 +29,14 @@ const SOURCES_ELEMENT_ID = "src_proverbs";
 // called by buttons
 function button_generate_new_proverb() {
 	let { i, j, k } = get_random_indexes();
+	let ref = `${i}:${j}-${k}`;
+
 	let { proverb1, proverb2 } = fetch_proverbs(i, j, k);
 	let new_proverb = mix_proverbs(proverb1, proverb2);
+
 	show_proverb(new_proverb);
 	hide_sources();
+	show_ref(ref);
 }
 
 function button_print_original_proverbs() {
@@ -56,6 +60,11 @@ function show_sources(proverbs) {
 	let html = `<p>${proverbs.join("<br>")}</p>`;
 	let div = document.getElementById(SOURCES_ELEMENT_ID);
 	div.innerHTML = html;
+}
+
+function show_ref(ref) {
+	let elem = document.getElementById('title')
+	elem.innerHTML = `Provérbios de Pompeu ${ref}`;
 }
 
 
