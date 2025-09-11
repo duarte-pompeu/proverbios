@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-	
+
 <html>
+
 <head>
 
 	<title>Gerador de provérbios online</title>
@@ -11,21 +12,22 @@
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="css/github-light.css" media="screen">
 </head>
+
 <body>
 	<section class="page-header">
 		<h1 class="project-name">Gerador de Provérbios</h1>
-		<br/>
-			
-				
+		<br />
+
+
 		<div id="generated_proverb" class="project-tagline"> </div>
 		<form name="myform">
-			<a class="btn" href="javascript:print_proverbs()">Gerar novo provérbio</a>
-			<a class="btn" href="javascript:print_src_proverbs()">Ver provérbios originais</a>
+			<a class="btn" href="javascript:button_generate_new_proverb()">Gerar novo provérbio</a>
+			<a class="btn" href="javascript:button_print_original_proverbs()">Ver provérbios originais</a>
 		</form>
 
 		<div id="src_proverbs" class="project-tagline">
 		</div>
-		
+
 		<br>
 		<br>
 		<br>
@@ -33,8 +35,9 @@
 		<div id="wisdom">
 			<p>Slavoj Zizek: "Whatever I say... You can sell it as a wisdom. This is a wisdom."</p>
 
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/tKoGQpEkpO0?start=12" title="YouTube video player"
-				frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/tKoGQpEkpO0?start=12"
+				title="YouTube video player" frameborder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 				allowfullscreen></iframe>
 		</div>
 	</section>
@@ -42,8 +45,8 @@
 
 
 <script type="text/javascript" src="js/proverbs.js"></script>
-<script type="text/javascript" src="js/io.js"></script>
 <script>
-print_proverbs();
+	button_generate_new_proverb();
 </script>
+
 </html>
