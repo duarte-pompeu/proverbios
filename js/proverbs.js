@@ -28,8 +28,10 @@ const SOURCES_ELEMENT_ID = "src_proverbs";
 
 // called by buttons
 function button_generate_new_proverb() {
-	let proverb = mix_random_proverbs();
-	show_proverb(proverb);
+	let { i, j, k } = get_random_indexes();
+	let { proverb1, proverb2 } = fetch_proverbs(i, j, k);
+	let new_proverb = mix_proverbs(proverb1, proverb2);
+	show_proverb(new_proverb);
 	hide_sources();
 }
 
@@ -58,24 +60,32 @@ function show_sources(proverbs) {
 
 
 // logic and state
-function mix_random_proverbs() {
+function get_random_indexes() {
 	// 1. Pick variable
 	let i = randint(1);
 	let proverbs = ALL_PROVERBS[i].split("|");
 
 	let n_proverbs = proverbs.length;
-	let randi = randint(n_proverbs - 1);
-	let randj = randint(n_proverbs - 2)
-	if (randj >= randi) {
-		randj++;
+	let j = randint(n_proverbs - 1);
+	let k = randint(n_proverbs - 2)
+	if (k >= j) {
+		k++;
 	}
-	let proverb1 = proverbs[randi];
-	let proverb2 = proverbs[randj];
+	return { i, j, k };
+}
 
+function fetch_proverbs(i, j, k) {
+	let proverbs = ALL_PROVERBS[i].split("|");
+	let proverb1 = proverbs[j];
+	let proverb2 = proverbs[k];
+
+	return { proverb1, proverb2 };
+}
+
+function mix_proverbs(proverb1, proverb2){
 	update_last_proverbs(proverb1, proverb2);
-
-	const new_prov_pt1 = proverb1.split(",")[0];
-	const new_prov_pt2 = proverb2.split(",")[1];
+	let new_prov_pt1 = proverb1.split(",")[0];
+	let new_prov_pt2 = proverb2.split(",")[1];
 	return `${new_prov_pt1}, ${new_prov_pt2}`;
 }
 
