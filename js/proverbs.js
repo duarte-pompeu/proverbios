@@ -28,9 +28,16 @@ const SOURCES_ELEMENT_ID = "src_proverbs";
 
 // called by buttons
 function button_generate_new_proverb() {
-	let proverb = mix_random_proverbs();
-	show_proverb(proverb);
+	let { i, j, k } = get_random_indexes();
+	let ref = `${i}-${j}-${k}`;
+
+	let { proverb1, proverb2 } = fetch_proverbs(i, j, k);
+	let new_proverb = mix_proverbs(proverb1, proverb2);
+
+	show_proverb(new_proverb);
 	hide_sources();
+	show_ref(ref);
+	update_url_with_ref(ref);
 }
 
 function button_print_original_proverbs() {
@@ -56,26 +63,39 @@ function show_sources(proverbs) {
 	div.innerHTML = html;
 }
 
+function show_ref(ref) {
+	let elem = document.getElementById('title')
+	elem.innerHTML = `Provérbios de Pompeu ${ref}`;
+}
+
 
 // logic and state
-function mix_random_proverbs() {
+function get_random_indexes() {
 	// 1. Pick variable
 	let i = randint(1);
 	let proverbs = ALL_PROVERBS[i].split("|");
 
 	let n_proverbs = proverbs.length;
-	let randi = randint(n_proverbs - 1);
-	let randj = randint(n_proverbs - 2)
-	if (randj >= randi) {
-		randj++;
+	let j = randint(n_proverbs - 1);
+	let k = randint(n_proverbs - 2)
+	if (k >= j) {
+		k++;
 	}
-	let proverb1 = proverbs[randi];
-	let proverb2 = proverbs[randj];
+	return { i, j, k };
+}
 
+function fetch_proverbs(i, j, k) {
+	let proverbs = ALL_PROVERBS[i].split("|");
+	let proverb1 = proverbs[j];
+	let proverb2 = proverbs[k];
+
+	return { proverb1, proverb2 };
+}
+
+function mix_proverbs(proverb1, proverb2){
 	update_last_proverbs(proverb1, proverb2);
-
-	const new_prov_pt1 = proverb1.split(",")[0];
-	const new_prov_pt2 = proverb2.split(",")[1];
+	let new_prov_pt1 = proverb1.split(",")[0];
+	let new_prov_pt2 = proverb2.split(",")[1];
 	return `${new_prov_pt1}, ${new_prov_pt2}`;
 }
 
@@ -85,4 +105,57 @@ function update_last_proverbs(p1, p2) {
 
 function randint(max) {
 	return Math.floor(Math.random() * (max + 1));
+}
+
+// cursor trash code below
+// URL parameter functions
+function update_url_with_ref(ref) {
+	const url = new URL(window.location);
+	url.searchParams.set('ref', ref);
+	window.history.pushState({}, '', url);
+}
+
+function get_ref_from_url() {
+	const urlParams = new URLSearchParams(window.location.search);
+	return urlParams.get('ref');
+}
+
+function generate_proverb_from_ref(ref) {
+	if (!ref) return null;
+	
+	const parts = ref.split('-');
+	if (parts.length !== 2) return null;
+	
+	const i = parseInt(parts[0]);
+	const range = parts[1].split('-');
+	if (range.length !== 2) return null;
+	
+	const j = parseInt(range[0]);
+	const k = parseInt(range[1]);
+	
+	if (isNaN(i) || isNaN(j) || isNaN(k)) return null;
+	if (i < 0 || i >= ALL_PROVERBS.length) return null;
+	
+	const proverbs = ALL_PROVERBS[i].split("|");
+	if (j < 0 || j >= proverbs.length || k < 0 || k >= proverbs.length) return null;
+	
+	const { proverb1, proverb2 } = fetch_proverbs(i, j, k);
+	const new_proverb = mix_proverbs(proverb1, proverb2);
+	
+	return { proverb: new_proverb, ref: ref };
+}
+
+function initialize_from_url() {
+	const ref = get_ref_from_url();
+	if (ref) {
+		const result = generate_proverb_from_ref(ref);
+		if (result) {
+			show_proverb(result.proverb);
+			show_ref(result.ref);
+			hide_sources();
+			return;
+		}
+	}
+	// If no valid ref in URL, generate a random one
+	button_generate_new_proverb();
 }
