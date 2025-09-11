@@ -80,16 +80,13 @@ function get_proverb() {
 	var proverbs = ALL_PROVERBS[i].split("|");
 
 	n_proverbs = proverbs.length;
-	var rand1 = randint(n_proverbs);
-	var rand2 = -1;
-
-	// get the second half of another proverb, and avoid using the same
-	while (rand2 == -1 || rand2 == rand1) {
-		rand2 = randint(n_proverbs);
+	var randi = randint(n_proverbs - 1);
+	var randj = randint(n_proverbs - 2)
+	if (randj >= randi) {
+		randj++;
 	}
-
-	var proverb1 = proverbs[rand1];
-	var proverb2 = proverbs[rand2];
+	var proverb1 = proverbs[randi];
+	var proverb2 = proverbs[randj];
 
 	update_last_proverbs(proverb1, proverb2);
 
