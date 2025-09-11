@@ -24,7 +24,7 @@ var ALL_PROVERBS = [PROVERBS_1, PROVERBS_2];
 var LAST_PROVERBS = ["", ""];
 
 var PROVERB_ELEMENT_ID = 'generated_proverb';
-var SOURCSE_ELEMENT_ID = "src_proverbs";
+var SOURCES_ELEMENT_ID = "src_proverbs";
 
 var SRC_BUTTON = "<form>";
 SRC_BUTTON += '<a style="color:#FFFFFF !important" href="javascript:button_print_original_proverbs()">Ver provérbios originais</a>';
@@ -33,10 +33,9 @@ SRC_BUTTON += "</form";
 // called by buttons
 function button_generate_new_proverb() {
 	var proverb = get_proverb();
-	print_proverb(proverb);
-	reset_src();
+	render_proverb(proverb);
+	render_hide_sources();
 }
-
 
 function button_print_original_proverbs() {
 	out = "";
@@ -47,7 +46,26 @@ function button_print_original_proverbs() {
 		out += "<br>"
 	}
 
-	var div = document.getElementById(SOURCSE_ELEMENT_ID);
+	render_show_sources();
+}
+
+
+// renders
+function render_proverb(string) {
+	var div = document.getElementById(PROVERB_ELEMENT_ID);
+	var result = "";
+	result += "<p>" + string + "</p>";
+
+	div.innerHTML = result;
+}
+
+function render_hide_sources() {
+	var div = document.getElementById(SOURCES_ELEMENT_ID);
+	div.innerHTML = SRC_BUTTON;
+}
+
+function render_show_sources() {
+	var div = document.getElementById(SOURCES_ELEMENT_ID);
 	var result = "<p>" + out + "</p>";
 
 	console.log(result);
@@ -55,11 +73,9 @@ function button_print_original_proverbs() {
 }
 
 
-
-
+// logic
 function get_proverb() {
 	// 1. Pick variable
-
 	var i = randint(1);
 	var proverbs = ALL_PROVERBS[i].split("|");
 
@@ -84,27 +100,9 @@ function get_proverb() {
 }
 
 function update_last_proverbs(p1, p2) {
-	LAST_PROVERBS = [];
-	LAST_PROVERBS.push(p1);
-	LAST_PROVERBS.push(p2);
+	LAST_PROVERBS = [p1, p2];
 }
 
 function randint(max) {
 	return Math.floor(Math.random() * (max + 1));
-}
-
-
-
-function print_proverb(string) {
-	var div = document.getElementById(PROVERB_ELEMENT_ID);
-	var result = "";
-	result += "<p>" + string + "</p>";
-
-	div.innerHTML = result;
-}
-
-
-function reset_src() {
-	var div = document.getElementById(SOURCSE_ELEMENT_ID);
-	div.innerHTML = SRC_BUTTON;
 }
